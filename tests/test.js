@@ -9,7 +9,7 @@
 
     var testFileName = process.cwd()+'/tests/resources/test.jpg';
 
-    console.log('execute',exif.sendCommands(['-HierarchicalSubject','-json',testFileName],showOut));
+    console.log('execute',exif.sendCommands(['-HierarchicalSubject',testFileName],showOut));
 
     
     //Smoke test.
@@ -18,10 +18,10 @@
     //hit the race condition. Often times after some number of tries
     //The buffering or race seem to catchup with the commands sent to exiftool.
     for (var i=0;i<10;i++) {
-	console.log('execute',exif.sendCommands(['-HierarchicalSubject','-json',testFileName],showOut));
+	console.log('execute',exif.sendCommands(['-HierarchicalSubject',testFileName],showOut));
     }
     //Error case
-    console.log('execute',exif.sendCommands(['-HXXierarchicalSubject','-json',testFileName],showOut));
+    console.log('execute',exif.sendCommands(['-HXXierarchicalSubject',testFileName],showOut));
 
 
     //Listen for keyboard activity. 
@@ -36,7 +36,7 @@
 		exif.stop();
 		process.exit();
 	    } else {
-		console.log('execute',exif.sendCommands(['-HierarchicalSubject','-json',testFileName],showOut));
+		console.log('execute',exif.sendCommands(['-HierarchicalSubject',testFileName],showOut));
 	    }
 	}
     });    
