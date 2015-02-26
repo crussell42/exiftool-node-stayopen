@@ -20,10 +20,10 @@ As with any ipc dealing with stdin and stdout of a child process I have managed
 to find some race conditions or io buffer not flushing properly issues.
 
 In particular, if you run tests/test.js it does a quick smoke test then settles in to reading 
-process.stdin. Each time you press <Enter>, if you didnt enter quit, sendCommands is called.
+process.stdin. Each time you press Enter, if you didnt enter the string 'quit', sendCommands is called.
 It works great as long as you dont hold down the enter key for too long.
 If you do, either the node side or the exiftool side can get out of sync. If you slow down it may well correct itsself. All the commands and output seem to be there it is just as though exiftool gets 
-behind on reading its stdin. Any help on this issue would be appreciated.
+behind on reading its stdin. Any help on this issue would be appreciated. Phil?
 
 ___Test___
 ```
@@ -46,7 +46,7 @@ exif.sendCommands(['-HierarchicalSubject','-json',myFile],mycallback);
 ```
 ___Output___
 ```
-output 294 { SourceFile: '/Users/chris/exiftool-node-stayopen/tests/resources/test.jpg',
+output 0 { SourceFile: '/Users/chris/exiftool-node-stayopen/tests/resources/test.jpg',
   HierarchicalSubject: 
    [ 'Events|Photo Shoot',
      'People|Chris',
@@ -61,6 +61,9 @@ output 294 { SourceFile: '/Users/chris/exiftool-node-stayopen/tests/resources/te
      'PorkChop|OfLove|Girl' ] }
 
 ```
+Note that output is an json object.
+So I guess we really shouldnt have to specify -json as one of the commands.
+It will contain a member 'ErrorString' if exiftool wrote anything to stderr during processing.
 
 
 
