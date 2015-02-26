@@ -61,6 +61,12 @@ output 0 { SourceFile: '/Users/chris/exiftool-node-stayopen/tests/resources/test
      'PorkChop|OfLove|Girl' ] }
 
 ```
+sendCommands returns the index of the execute statement sent to exiftool.
+e.g. if sendCommands sends 'execute42' to exiftool, sendCommands will return 42.
+```
+console.log('execute',sendCommands(['-MyTagToExtract',myJpg],myCallback));
+==> execute 42
+```
 Note that output is an json object.
 The -json argument is automatically added every time you call sendCommands.
 It will contain a member 'ErrorString' if exiftool wrote anything to stderr during processing.
