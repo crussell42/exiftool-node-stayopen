@@ -62,6 +62,10 @@ output 0 { SourceFile: '/Users/chris/exiftool-node-stayopen/tests/resources/test
 
 ```
 sendCommands returns the index of the execute statement sent to exiftool.
+sendCommands maintains a incrementing count each time it is called.
+This index is used to associate the appropriate callback call with the data returned
+from exiftool.
+
 e.g. if sendCommands sends 'execute42' to exiftool, sendCommands will return 42.
 ```
 console.log('execute',sendCommands(['-MyTagToExtract',myJpg],myCallback));
