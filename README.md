@@ -12,9 +12,18 @@ The load time on exiftool is a real bottleneck to spawning it everytime
 you want to extract or write some tags.
 
 This package is anything but stable or complete but seems to work fairly well.
-The hack of using ever expanding arrays to manage the data returned and the 
-callbacks to make with said data are silly at best. This was only an initial test.
+The hack of using ever expanding arrays to manage the data returned, and the 
+callbacks to use with that data are silly and dangerous at best. This was only an initial test.
 Ill probably fix the really blatent issues but this may give others some ideas..
+
+As with any ipc dealing with stdin and stdout of a child process I have managed
+to find some race conditions or io buffer not flushing properly issues.
+
+In particular, if you run tests/test.js it does a quick smoke test then settles in to reading 
+process.stdin. Each time you press <Enter>, if you didnt enter quit, sendCommands is called.
+It works great as long as you dont hold down the enter key for too long.
+If you do, either the node side or the exiftool side can get out of sync. If you slow down it may well correct itsself. All the commands and output seem to be there it is just as though exiftool gets 
+behind on reading its stdin. Any help on this issue would be appreciated.
 
 ___Test___
 ```
@@ -34,8 +43,25 @@ function mycallback(str,index) {
   exif.stop();
 }
 exif.sendCommands(['-HierarchicalSubject','-json',myFile],mycallback);
+```
+___Output___
+```
+output 294 { SourceFile: '/Users/chris/exiftool-node-stayopen/tests/resources/test.jpg',
+  HierarchicalSubject: 
+   [ 'Events|Photo Shoot',
+     'People|Chris',
+     'Places|Austin',
+     'Places',
+     'People',
+     'Events',
+     'TestTextEntry',
+     'TestTextEntry|This is test text',
+     'PorkChop',
+     'PorkChop|OfLove',
+     'PorkChop|OfLove|Girl' ] }
 
 ```
+
 
 
 
