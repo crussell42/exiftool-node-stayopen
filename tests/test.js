@@ -23,6 +23,15 @@
     //Error case
     console.log('execute',exif.sendCommands(['-HXXierarchicalSubject',testFileName],showOut));
 
+    
+    //Lets see how big our arrays are now
+    console.log('STATS',exif.sendCommands(['-HierarchicalSubject',testFileName],function(str,ndx) {
+	//ignore output of last command sent...just show remaining keys in objects
+	//Note that cleanup of the currently executing callback wont complete until this is finished
+	//so we will always see at least one key
+	console.log(exif.stats());
+    }));
+
 
     //Listen for keyboard activity. 
     //Fire off a request after each <Enter> pressed.

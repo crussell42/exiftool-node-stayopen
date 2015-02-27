@@ -1,38 +1,37 @@
 {
-"name": "exiftool",
-"version": "0.0.1",
-"description": "Tag data or meta data extraction from media files.",
-"main": "./lib/exifstayopen",
-"author": {
-"name": "Chris Russell",
-"email": "crussell42@gmail.com"
-},
-"devDependencies": {
-
-},
-"repository": {
-"type": "git",
-"url": "git://github.com/crussell42/exiftool-node-stayopen.git"
-},
-"keywords": [
-"exiftool",
-"stay_open",
-"file",
-"metadata",
-"tags",
-"image",
-"video",
-"PNG",
-"PDF"
-],
-"licenses": [
-{
-"type": "WTFPL",
-"url": "https://raw.githubusercontent.com/crussell42/exiftool-node-stayopen/master/LICENSE"
-}
-],
-"readmeFilename": "README.md",
-"scripts": {
-
-}
+  "name": "exiftool",
+  "version": "0.0.1",
+  "description": "Tag data or meta data extraction from media files.",
+  "main": "./lib/exifstayopen",
+  "author": {
+    "name": "Chris Russell",
+    "email": "crussell42@gmail.com"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/crussell42/exiftool-node-stayopen.git"
+  },
+  "keywords": [
+    "exiftool",
+    "stay_open",
+    "file",
+    "metadata",
+    "tags",
+    "image",
+    "video",
+    "PNG",
+    "PDF"
+  ],
+  "licenses": [
+    {
+      "type": "WTFPL",
+      "url": "https://raw.githubusercontent.com/crussell42/exiftool-node-stayopen/master/LICENSE"
+    }
+  ],
+  "readmeFilename": "README.md",
+  "scripts": {},
+  "dependencies": {
+    "bluebird": "^2.9.12"
+  }
 }
