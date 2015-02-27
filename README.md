@@ -13,8 +13,8 @@ you want to extract or write some tags.
 
 This package is anything but stable or complete but seems to work fairly well.
 The hack of using ever expanding arrays to manage the data returned, and the 
-callbacks to use with that data are silly and dangerous at best. This was only an initial test.
-Ill probably fix the really blatent issues but this may give others some ideas..
+callbacks to use with that data are silly and dangerous at best. 
+This has been corrected and I now use an object for data storage, an object for storage of the callbacks and promises to allow cleanup of data and callback after they are called.
 
 As with any ipc dealing with stdin and stdout of a child process I have managed
 to find some race conditions or io buffer not flushing properly issues.
@@ -27,6 +27,7 @@ behind on reading its stdin. Any help on this issue would be appreciated. Phil?
 
 ___Test___
 ```
+npm install
 node tests/test.js
 ```
 
